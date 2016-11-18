@@ -33,34 +33,7 @@ value=0;
 
 if [ ! -f /usr/sbin/tcpdump ]; then
 yum -y update
-yum -y install telnet
-yum -y install glibc glibc.i686
-yum -y install man
-yum -y install wget
-yum -y install openssh-clients
-yum -y install lynx
-yum -y install bc
-yum -y install gcc
-yum -y install sed
-yum -y install rsync
-yum -y install chkconfig
-yum -y install perl perl-CPAN perl-DBI perl-DBD-Pg perl-Net-SSLeay openssl perl-IO-Tty
-yum -y install tcpdump
-yum -y install tcpreplay
-yum -y install net-snmp-utils net-snmp
-yum -y install dstat
-yum -y install iotop
-yum -y install sysstat
-yum -y install quagga quagga-contrib
-yum -y install iptraf
-yum -y install samba
-yum -y install nscd.x86_64 
-yum -y install pam_krb5.x86_64 
-yum -y install samba-winbind.x86_64
-yum -y install system-config-network-tui
-yum -y install lsof
-yum -y install parted
-yum -y install nfs-utils
+yum -y install telnet glibc.x86_64 man wget openssh-clients lynx bc gcc sed rsync chkconfig perl perl-CPAN perl-DBI perl-DBD-Pg perl-Net-SSLeay openssl perl-IO-Tty tcpdump tcpreplay net-snmp-utils net-snmp dstat iotop sysstat quagga quagga-contrib iptraf samba nscd.x86_64 pam_krb5.x86_64 samba-winbind.x86_64 system-config-network-tui lsof parted nfs-utils
 fi
 
 # rsyslog configuration file
