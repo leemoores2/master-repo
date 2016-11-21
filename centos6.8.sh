@@ -164,6 +164,7 @@ rpm -Uvh srvadmin-racadm5-7.0.0-4.162.1.el6.x86_64.rpm
 if [ ! -f /var/lib/pgsql/9.4/pgstartup.log ]; then
 wget https://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-3.noarch.rpm
 yum -y install pgdg-centos94-9.4-3.noarch.rpm
+yum -y install postgresql94-contrib
 yum -y install postgresql94-server
 yum -y install postgresql-jdbc
 /etc/init.d/postgresql-9.4 initdb
