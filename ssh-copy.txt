@@ -1,0 +1,18 @@
+ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.23
+ssh-copy-id 172.16.100.23
+ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.24
+ssh-copy-id 172.16.100.24
+ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.25
+ssh-copy-id 172.16.100.25
+ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.26
+ssh-copy-id 172.16.100.26
+ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.27
+ssh-copy-id 172.16.100.27
+ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.28
+ssh-copy-id 172.16.100.28
+ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.29
+ssh-copy-id 172.16.100.29
+ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.32
+ssh-copy-id 172.16.100.32
+ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.33
+ssh-copy-id 172.16.100.33
