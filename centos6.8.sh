@@ -145,11 +145,11 @@ echo "" >> /etc/issue
 
 ##### racadm ######
 
-wget http://builds.rebasoft.net/uploads/files/OM-SrvAdmin-Dell-Web-LX-7.0.0-4614_A00.tar.gz
+wget http://builds.rebasoft.net/builder/OM-SrvAdmin-Dell-Web-LX-8.4.0-2193_A00.tar.gz
 yum -y install pciutils
 yum -y install OpenIPMI
 cd /opt/software
-tar vxf OM-SrvAdmin-Dell-Web-LX-7.0.0-4614_A00.tar.gz -C /
+tar vxf OM-SrvAdmin-Dell-Web-LX-8.4.0-2193_A00.tar.gz -C /
 cd /linux/RPMS/supportRPMS/srvadmin/RHEL6/x86_64
 rpm -Uvh libsmbios-2.2.27-4.3.2.el6.x86_64.rpm 
 rpm -Uvh smbios-utils-bin-2.2.27-4.3.2.el6.x86_64.rpm 
