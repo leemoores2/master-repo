@@ -1,0 +1,15 @@
+Uninstall RabbitMQ
+
+
+rabbitmqctl delete_user test
+rabbitmqctl delete_user lee
+rpm -evv erlang-solutions
+rpm -evv socat
+rm -rf /etc/yum.repos.d/convirt.repo
+rpm -evv rabbitmq-server
+rm -rf /etc/yum.repos.d/erlang_solutions.repo
+rm -rf /etc/init.d/rabbitmq-server
+rm -rf /etc/rabbitmq
+rm -rf /var/lib/rabbitmq
+rm -rf /opt/software/rabbitmq-server-3.6.5-1.noarch.rpm*
+rm -rf /opt/software/erlang-solutions-1.0-1.noarch.rpm*

@@ -1,0 +1,37 @@
+New Virtual Machine Environment
+
+IP Range
+172.16.100.25
+172.16.182.26
+172.16.182.27
+172.16.182.28
+172.16.182.29
+
+Hostname
+rebasvr25
+rebasvr26
+rebasvr27
+rebasvr28
+rebasvr29
+
+Running Apps
+Both AC and AA
+
+Amount of RAM
+2.5GB
+
+Number of CPU
+2 Cores
+
+Amount of Disk
+100GB
+
+
+
+License keys - end of year
+Latest product versions
+rsyslog configuration
+
+
+
+keytool -importkeystore  -srckeystore cert.p12 -destkeystore myotherstore.jks -srcstoretype PKCS12 -deststoretype jks -srcstorepass mystorepass -deststorepass myotherstorepass -srckeypass mykeypass -destkeypass myotherkeypass

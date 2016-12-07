@@ -1,0 +1,20 @@
+On Core and Auditor boxes:
+
+ 
+
+
+vi $HOME/rsmb.properties
+
+
+
+
+
+host=10.100.1.15
+
+port=5672
+
+username=test
+
+password=test
+                                                                                  
+change host to the ip of RMC  box.

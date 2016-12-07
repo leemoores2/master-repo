@@ -1,0 +1,9 @@
+Clean VM Lab
+
+/etc/resolv.conf
+/etc/sysconfig/network-scripts/ifcfg-eth0
+/etc/sysconfig/network
+/etc/udev/rules.d/70-persistent-net.rules
+
+Known issues
+

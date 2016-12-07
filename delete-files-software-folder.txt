@@ -1,0 +1,6 @@
+# Remove unnecessary files #
+
+sh /scripts/yum.sh rm -rf /opt/software/*.rpm
+sh /scripts/yum.sh rm -rf /opt/software/*.gz
+sh /scripts/yum.sh rm -rf /opt/software/*.tgz
+sh /scripts/yum.sh rm -rf /opt/software/*.tar

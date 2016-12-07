@@ -1,0 +1,60 @@
+13:51:12,383  WARN CProfile:177 - Adding new profiler 6 rule to :94 using:169.52.122.14,169.52.200.89,169.52.122.15,169.52.122.17  rc:CProfileChainedMatcher id:2254 hits:0 type:6 BMC Patrol ASIA
+2016-09-22 
+13:51:12,383  WARN CProfileChainedMatcher:163 - Adding new profiler addDstIPRule rule to :CProfile:Base rule 2014-09-08 hits:3668676 type:12 id:94 using:169.52.122.14
+2016-09-22 
+13:51:12,383  WARN CProfileChainedMatcher:516 - Adding new profiler addDstIP rule to :12 using:169.52.122.14
+2016-09-22 
+13:51:12,383  WARN CProfileChainedMatcher:35 - adding profile rule:-1456178674, hits:0 to:CProfileChainedMatcher id:2254 hits:0 type:6 BMC Patrol ASIA
+2016-09-22 
+13:51:12,384  WARN CProfileChainedMatcher:163 - Adding new profiler addDstIPRule rule to :CProfile:Base rule 2014-09-08 hits:3668676 type:12 id:94 using:169.52.200.89
+2016-09-22
+13:51:12,384  WARN CProfileChainedMatcher:516 - Adding new profiler addDstIP rule to :12 using:169.52.200.89
+2016-09-22
+13:51:12,384  WARN CProfileChainedMatcher:35 - adding profile rule:-1456158631, hits:0 to:CProfileChainedMatcher id:2254 hits:0 type:6 BMC Patrol ASIA
+2016-09-22 
+13:51:12,384  WARN CProfileChainedMatcher:163 - Adding new profiler addDstIPRule rule to :CProfile:Base rule 2014-09-08 hits:3668676 type:12 id:94 using:169.52.122.15
+2016-09-22 
+13:51:12,384  WARN CProfileChainedMatcher:516 - Adding new profiler addDstIP rule to :12 using:169.52.122.15
+2016-09-22 
+13:51:12,384  WARN CProfileChainedMatcher:35 - adding profile rule:-1456178673, hits:0 to:CProfileChaindMatcher id:2254 hits:0 type:6 BMC Patrol ASIA
+2016-09-22 
+13:51:12,384  WARN CProfileChainedMatcher:163 - Adding new profiler addDstIPRule rule to :CProfile:Base rule 2014-09-08 hits:3668676 type:12 id:94 using:169.52.122.17 
+2016-09-22
+
+
+13:51:12,383  WARN CProfile:177 - Adding new profiler 6 rule to :94 using:169.52.122.14,169.52.200.89,169.52.122.15,169.52.122.17  rc:CProfileChainedMatcher id:2254 hits:0 type:6 BMC Patrol ASIA
+2016-09-22
+13:51:12,383  WARN CProfileChainedMatcher:163 - Adding new profiler addDstIPRule rule to :CProfile:Base rule 2014-09-08 hits:3668676 type:12 id:94 using:169.52.122.14
+2016-09-22 
+13:51:12,383  WARN CProfileChainedMatcher:516 - Adding new profiler addDstIP rule to :12 using:169.52.122.14
+2016-09-22
+13:51:12,383  WARN CProfileChainedMatcher:35 - adding profile rule:-1456178674, hits:0 to:CProfileChainedMatcher id:2254 hits:0 type:6 BMC Patrol ASIA
+2016-09-22
+13:51:12,384  WARN CProfileChainedMatcher:163 - Adding new profiler addDstIPRule rule to :CProfile:Base rule 2014-09-08 hits:3668676 type:12 id:94 using:169.52.200.89
+2016-09-22
+13:51:12,384  WARN CProfileChainedMatcher:516 - Adding new profiler addDstIP rule to :12 using:169.52.200.89
+2016-09-22
+13:51:12,384  WARN CProfileChainedMatcher:35 - adding profile rule:-1456158631, hits:0 to:CProfileChainedMatcher id:2254 hits:0 type:6 BMC Patrol ASIA
+2016-09-22 
+13:51:12,384  WARN CProfileChainedMatcher:163 - Adding new profiler addDstIPRule rule to :CProfile:Base rule 2014-09-08 hits:3668676 type:12 id:94 using:169.52.122.15
+2016-09-22
+13:51:12,384  WARN CProfileChainedMatcher:516 - Adding new profiler addDstIP rule to :12 using:169.52.122.15
+2016-09-22 
+13:51:12,384  WARN CProfileChainedMatcher:35 - adding profile rule:-1456178673, hits:0 to:CProfileChainedMatcher id:2254 hits:0 type:6 BMC Patrol ASIA
+2016-09-22 
+13:51:12,384  WARN CProfileChainedMatcher:163 - Adding new profiler addDstIPRule rule to :CProfile:Base rule 2014-09-08 hits:3668676 type:12 id:94 using:169.52.122.17 
+2016-09-22 
+13:51:12,390 DEBUG CDefaultWeb:1190 - user is not null:admin/ aclDevices:0 aclInterfaces:0(admin) 1474548672326
+2016-09-22 
+13:51:12,390 DEBUG CDefaultWeb:1222 - In ProcessRequest end :snfcsaa88.link.hedani.net host:159.156.159.77 svt: sp:8487 ru:https://fcsaa88.link.hedani.net:8487/ qs:name=BMC+Patrol+ASIA&description=&srcip=&srcport=&dstip=169.52.122.14%2C169.52.200.89%2C169.52.122.15%2C169.52.122.17+&dstport=&tos=&bps=&pps=&duration=&pageAction=editRule&ProfileGroupID=94&OldProfileID=2002&settingsChoice=profilersettings&action=-%3E&goto=po
+2016-09-22 
+13:51:12,889 DEBUG EmcConnectionManager:176 - loadEmcServersTable emcServers.isEmpty():true
+2016-09-22 13:51:12,889 DEBUG EmcConnectionManager:199 - loadEmcServersTable: skipping load from DB
+2016-09-22 
+13:51:25,209 DEBUG CDefaultWeb:143 - Doing Get
+2016-09-22 
+13:51:25,210 DEBUG CDefaultWeb:804 - getHeaderNames:Cookie headervalue:REBA_MA_Session=1pa1wda1oszmp8opdcge6j58b; testing=1; sid=2899645fc54b35cfdbbc112a60dbf1d2; REBA_AA_Session=1ssxqmzhv4s841ihms0dx4staa
+2016-09-22 
+13:51:25,210 DEBUG CDefaultWeb:804 - getHeaderNames:Accept headervalue:text/html, application/xhtml+xml, */*
+2016-09-22 13:51:25,210 DEBUG CDefaultWeb:804 - getHeaderNames:Referer headervalue:https://fcsaa88.link.hedani.net:8487/?
+2016-09-22 

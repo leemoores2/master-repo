@@ -1,0 +1,19 @@
+2016-09-09 09:25:37,073 INFO - Only new items will be imported
+2016-09-09 09:25:37,076 INFO - Importing issue: [externalId='autoid-5437095824110414063', summary='HA failover issue reported by CS']
+2016-09-09 09:25:37,115 ERROR - Error importing issue [externalId='autoid-5437095824110414063', summary='HA failover issue reported by CS']
+com.atlassian.jira.plugins.importer.external.ExternalException: Status [ Waiting for support ] does not have a linked step in the [ jira ] workflow. Please map to a different status.
+	at com.atlassian.jira.plugins.importer.imports.importer.impl.ExternalUtils.normalizeStatus(ExternalUtils.java:223)
+	at com.atlassian.jira.plugins.importer.imports.importer.impl.ExternalUtils.createIssue(ExternalUtils.java:190)
+	at com.atlassian.jira.plugins.importer.imports.importer.impl.DefaultJiraDataImporter.createIssue(DefaultJiraDataImporter.java:927)
+	at com.atlassian.jira.plugins.importer.imports.importer.impl.DefaultJiraDataImporter.importIssues(DefaultJiraDataImporter.java:799)
+	at com.atlassian.jira.plugins.importer.imports.importer.impl.DefaultJiraDataImporter.doImport(DefaultJiraDataImporter.java:415)
+	at com.atlassian.jira.plugins.importer.imports.importer.impl.ImporterCallable.call(ImporterCallable.java:26)
+	at com.atlassian.jira.plugins.importer.imports.importer.impl.ImporterCallable.call(ImporterCallable.java:15)
+	at com.atlassian.jira.task.TaskManagerImpl$TaskCallableDecorator.call(TaskManagerImpl.java:445)
+	at com.atlassian.jira.task.TaskManagerImpl$TaskCallableDecorator.call(TaskManagerImpl.java:413)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at com.atlassian.jira.task.ForkedThreadExecutor$ForkedRunnableDecorator.run(ForkedThreadExecutor.java:216)
+	at java.lang.Thread.run(Thread.java:745)
+2016-09-09 09:25:37,122 INFO - 1 issues successfully created

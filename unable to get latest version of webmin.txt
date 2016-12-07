@@ -1,0 +1,11 @@
+Not able to upgrade with latest webmin version
+
+Please see attached file webmin-1.810-1.noarch.rpm
+Please follow the steps below:
+1. Login to Webmin
+2. Click on Upload and Download
+3. Upload to webmin-1.810-1.noarch.rpm to the /opt/software folder
+4. Login to CLI
+5. Open the software folder: cd /opt/software
+6. Unpackage the file: rpm -Uvh webmin-1.810-1.noarch.rpm
+7. Restart Webmin: service webmin restart

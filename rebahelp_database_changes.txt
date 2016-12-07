@@ -1,0 +1,5 @@
+UPDATE rs_options SET option_value = REPLACE(option_value, 'http://help.rebasoft.net/2.9', 'http://help.rebasoft.net/3.0');
+UPDATE rs_posts SET guid = REPLACE(guid, 'http://help.rebasoft.net/2.9', 'http://help.rebasoft.net/3.0');
+UPDATE rs_posts SET post_content = REPLACE(post_content, 'http://help.rebasoft.net/2.9', 'http://help.rebasoft.net/3.0');
+UPDATE rs_postmeta SET meta_value = REPLACE(meta_value, 'http://help.rebasoft.net/2.9', 'http://help.rebasoft.net/3.0');
+UPDATE rs_term_taxonomy SET description = REPLACE(description, 'http://help.rebasoft.net/2.9', 'http://help.rebasoft.net/3.0');

@@ -1,0 +1,20 @@
+SELECT DISTINCT SUM(macs), macstatus.display, ma_maccoverage_summ_hourly_1474502400000.status FROM ma_maccoverage_summ_hourly_1474502400000 JOIN macstatus on (ma_maccoverage_summ_hourly_1474502400000.status = macstatus.status) WHERE ma_maccoverage_summ_hourly_1474502400000.status = 2 OR ma_maccoverage_summ_hourly_1474502400000.status = 7 OR ma_maccoverage_summ_hourly_1474502400000.status = 9 GROUP by ma_maccoverage_summ_hourly_1474502400000.status, ma_maccoverage_summ_hourly_1474502400000.firstseen, macstatus.display;
+
+
+
+SELECT DISTINCT SUM(macs), macstatus.display, ma_maccoverage_summ_hourly.status FROM ma_maccoverage_summ_hourly JOIN macstatus on (ma_maccoverage_summ_hourly.status = macstatus.status) WHERE ma_maccoverage_summ_hourly.status = 2 OR ma_maccoverage_summ_hourly.status = 7 OR ma_maccoverage_summ_hourly.status = 9 GROUP by ma_maccoverage_summ_hourly.status, ma_maccoverage_summ_hourly.firstseen, macstatus.display;
+
+
+SELECT DISTINCT SUM(macs), macstatus.display, ma_maccoverage_summ_hourly.status FROM ma_maccoverage_summ_hourly JOIN macstatus on (ma_maccoverage_summ_hourly.status = macstatus.status) ORDER BY ma_maccoverage_summ_hourly.firstseen ASC WHERE ma_maccoverage_summ_hourly.status = 2 OR ma_maccoverage_summ_hourly.status = 7 OR ma_maccoverage_summ_hourly.status = 9 GROUP by ma_maccoverage_summ_hourly.status, ma_maccoverage_summ_hourly.firstseen, macstatus.display;
+
+
+
+
+
+
+
+
+
+THIS ONE:
+
+select DISTINCT macstatus.display AS MACSTATUS, TO_CHAR(TO_TIMESTAMP(ma_maccoverage_summ_hourly.firstseen / 1000), 'YYYY/MM/DD HH24:MI:SS'), SUM(ma_maccoverage_summ_hourly.macs) AS MACCOUNT FROM ma_maccoverage_summ_hourly JOIN macstatus on (ma_maccoverage_summ_hourly.status = macstatus.status) GROUP by macstatus.display, ma_maccoverage_summ_hourly.firstseen, ma_maccoverage_summ_hourly.status ORDER by TO_CHAR(TO_TIMESTAMP(ma_maccoverage_summ_hourly.firstseen / 1000), 'YYYY/MM/DD HH24:MI:SS') DESC;
