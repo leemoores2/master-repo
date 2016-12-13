@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# Centos 6.8 Minimal Install
+# Centos 7.3 Minimal Install
+
 # Disable SELINUX
-if grep -q SELINUX=enforcing /etc/selinux/config; then
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+#if grep -q SELINUX=enforcing /etc/selinux/config; then
+if grep -q SELINUX=enforcing /etc/sysconfig/selinux; then
+#sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
 shutdown -r now
 exit 0
 else
@@ -14,18 +17,17 @@ fi
 useradd -m rebasoft
 echo rebasoft:Rebas0ft | chpasswd
 sed -i 's/#PermitRootLogin yes/PermitRootLogin no/g; s/PermitRootLogin yes/PermitRootLogin no/g; s/#PermitRootLogin no/PermitRootLogin no/g' /etc/ssh/sshd_config
-/etc/init.d/sshd restart
+systemctl restart sshd.service
 mkdir -p /opt/pgsql /opt/Rebasoft /var /var/lib /etc/raddb
 ln -s /opt/pgsql /var/lib/pgsql
 
 # Installations
 yum -y update
-yum -y install telnet glibc.x86_64 man wget openssh-clients lynx bc gcc sed rsync chkconfig perl perl-CPAN perl-DBI perl-DBD-Pg perl-Net-SSLeay openssl perl-IO-Tty tcpdump tcpreplay net-snmp-utils net-snmp dstat iotop sysstat quagga quagga-contrib iptraf samba nscd.x86_64 pam_krb5.x86_64 samba-winbind.x86_64 system-config-network-tui lsof parted nfs-utils
+yum -y install net-tools telnet glibc.x86_64 man wget openssh-clients lynx bc gcc sed rsync chkconfig perl perl-CPAN perl-DBI perl-DBD-Pg perl-Net-SSLeay openssl perl-IO-Tty tcpdump tcpreplay net-snmp-utils net-snmp dstat iotop sysstat quagga quagga-contrib iptraf samba nscd.x86_64 pam_krb5.x86_64 samba-winbind.x86_64 system-config-network-tui lsof parted nfs-utils
 
 # RSYSLOG Configuration File
 wget --no-cache -O /etc/rsyslog.conf "http://builds.rebasoft.net/builder/rsyslog.conf"
-/etc/init.d/rsyslog stop
-chkconfig --level 0123456 rsyslog off
+systemctl stop rsyslog.service
 mkdir -p /opt/scripts /opt/software /opt/software/samplicator
 
 # Monitoring Scripts
@@ -34,7 +36,7 @@ wget --no-cache -O /opt/scripts/ac_mon.sh "http://builds.rebasoft.net/builder/ac
 wget --no-cache -O /opt/scripts/disk_mon.sh "http://builds.rebasoft.net/builder/disk_mon.sh"
 wget --no-cache -O /opt/scripts/postgres_mon.sh "http://builds.rebasoft.net/builder/postgres_mon.sh"
 chmod -R 755 /opt/scripts
-crontab -u root -l; echo "*/5 * * * * /opt/scripts/aa_mon.sh" ) | crontab -u root -
+(crontab -u root -l; echo "*/5 * * * * /opt/scripts/aa_mon.sh" ) | crontab -u root -
 (crontab -u root -l; echo "*/5 * * * * /opt/scripts/ac_mon.sh" ) | crontab -u root -
 (crontab -u root -l; echo "0 */1 * * * /opt/scripts/disk_mon.sh" ) | crontab -u root -
 (crontab -u root -l; echo "*/5 * * * * /opt/scripts/postgres_mon.sh" ) | crontab -u root -
@@ -54,54 +56,40 @@ chmod 755 /lib64/security/pam_radius_auth.so
 read -r aaname</opt/scripts/aatouse.txt
 read -r acname</opt/scripts/actouse.txt
 
-iptables -F
-iptables -X
-iptables -t nat -F
-iptables -t nat -X
-iptables -t mangle -F
-iptables -t mangle -X
-iptables -P INPUT ACCEPT
-iptables -P FORWARD ACCEPT
-iptables -P OUTPUT ACCEPT
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-iptables -A INPUT -p icmp -j ACCEPT
-iptables -A INPUT -i lo -j ACCEPT
-iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
-iptables -A INPUT -p udp --dport 123 -j ACCEPT
-iptables -A INPUT -p udp --dport 161 -j ACCEPT
-iptables -A INPUT -p udp --dport 162 -j ACCEPT
-iptables -A INPUT -p udp --dport 1812 -j ACCEPT
-iptables -A INPUT -p udp --dport 1813 -j ACCEPT
-iptables -A INPUT -p udp --dport 2055 -j ACCEPT
-iptables -A INPUT -p udp --dport 53 -j ACCEPT
-iptables -A INPUT -p udp --dport 514 -j ACCEPT
-iptables -A INPUT -p udp --dport 515 -j ACCEPT
-iptables -A INPUT -p udp --dport 67 -j ACCEPT
-iptables -A INPUT -p udp --dport 1645 -j ACCEPT
-iptables -A INPUT -p udp --dport 2050:2060 -j ACCEPT
-iptables -A INPUT -p udp --dport 510:520 -j ACCEPT
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-iptables -A INPUT -p tcp --dport 54321:54330 -j ACCEPT
-iptables -A INPUT -p tcp --dport 5432 -j ACCEPT
-iptables -A INPUT -p tcp --dport 8082 -j ACCEPT
-iptables -A INPUT -p tcp --dport 8087 -j ACCEPT
-iptables -A INPUT -p tcp --dport 8482 -j ACCEPT
-iptables -A INPUT -p tcp --dport 8487 -j ACCEPT
-iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-iptables -A INPUT -p tcp --dport 81 -j ACCEPT
-iptables -A INPUT -p tcp --dport 443 -j ACCEPT
-iptables -A INPUT -p tcp --dport 444 -j ACCEPT
-iptables -A INPUT -p tcp --dport 10000 -j ACCEPT
-iptables -A INPUT -p icmp --icmp-type timestamp-request -j DROP
-iptables -A INPUT -j REJECT --reject-with icmp-host-prohibited
-iptables -A FORWARD -j REJECT --reject-with icmp-host-prohibited
-/etc/init.d/iptables save
+firewall-cmd --permanent --add-port=1935/tcp
+firewall-cmd --permanent --add-port=123/udp
+firewall-cmd --permanent --add-port=161/udp
+firewall-cmd --permanent --add-port=162/udp
+firewall-cmd --permanent --add-port=1812/udp
+firewall-cmd --permanent --add-port=1813/udp
+firewall-cmd --permanent --add-port=2055/udp
+firewall-cmd --permanent --add-port=53/udp
+firewall-cmd --permanent --add-port=514/udp
+firewall-cmd --permanent --add-port=515/udp
+firewall-cmd --permanent --add-port=67/udp
+firewall-cmd --permanent --add-port=1645/udp
+firewall-cmd --permanent --add-port=2050-2060/udp
+firewall-cmd --permanent --add-port=510-520/udp
+firewall-cmd --permanent --add-port=22/tcp
+firewall-cmd --permanent --add-port=54321-54330/tcp
+firewall-cmd --permanent --add-port=5432/tcp
+firewall-cmd --permanent --add-port=8082/tcp
+firewall-cmd --permanent --add-port=8087/tcp
+firewall-cmd --permanent --add-port=8482/tcp
+firewall-cmd --permanent --add-port=8487/tcp
+firewall-cmd --permanent --add-port=80/tcp
+firewall-cmd --permanent --add-port=81/tcp
+firewall-cmd --permanent --add-port=443/tcp
+firewall-cmd --permanent --add-port=444/tcp
+firewall-cmd --permanent --add-port=10000/tcp
+firewall-cmd --reload
+firewall-cmd --list-all
 
 # security change for TCP timestamp
 sysctl -w net.ipv4.tcp_timestamps=0
 echo "Rebasoft Appliance" > /etc/issue
 echo "">> /etc/issue
-echo "$(ifconfig eth0 | grep inet)" >> /etc/issue
+echo "$(ifconfig ens160 | grep inet)" >> /etc/issue
 echo "" >> /etc/issue
 
 # IDRAC RACADM V7.0.0
@@ -116,15 +104,19 @@ rpm -Uvh /linux/RPMS/supportRPMS/srvadmin/RHEL6/x86_64/srvadmin-argtable2-7.0.0-
 rpm -Uvh /linux/RPMS/supportRPMS/srvadmin/RHEL6/x86_64/srvadmin-racadm5-7.0.0-4.162.1.el6.x86_64.rpm
 /opt/dell/srvadmin/sbin/srvadmin-services.sh start
 
-# PostgreSQL V8.4
-yum -y install postgresql-server postgresql postgresql-jdbc
-/etc/init.d/postgresql initdb
+# PostgreSQL V9.2
+yum -y install postgresql
+yum -y install postgresql-contrib
+yum -y install postgresql-server
+yum -y install postgresql-libs
+yum -y install postgresql-jdbc
+postgresql-setup initdb
 mv -f /var/lib/pgsql/data/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf.orig
 mv -f /var/lib/pgsql/data/postgresql.conf /var/lib/pgsql/data/postgresql.conf.orig
 wget --no-cache -O /var/lib/pgsql/data/pg_hba.conf "http://builds.rebasoft.net/builder/pg_hba.conf"
 wget --no-cache -O /var/lib/pgsql/data/postgresql.conf "http://builds.rebasoft.net/builder/postgresqlAppliance.conf"
-chkconfig --level 345 postgresql on
-/etc/init.d/postgresql restart
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
 wget --no-cache -O /opt/software/provisionDB.txt "http://builds.rebasoft.net/builder/provisionDB.txt"
 wget --no-cache -O /opt/software/createAADB.txt "http://builds.rebasoft.net/builder/createAADB.txt"
 wget --no-cache -O /opt/software/createACDB.txt "http://builds.rebasoft.net/builder/createACDB.txt"
@@ -132,13 +124,11 @@ su postgres < /opt/software/createAADB.txt
 su postgres < /opt/software/createACDB.txt
 
 # NTP
-chkconfig --level 345 snmpd on
-/etc/init.d/snmpd start
+systemctl start snmpd.service
 yum -y install ntp ntpdate
-/etc/init.d/ntpd stop
-chkconfig --levels 345 ntpd on
+systemctl stop ntpd.service
 ntpdate pool.ntp.org
-/etc/init.d/ntpd start
+systemctl start ntpd.service
 
 # Java Runtime Environment 1.8
 wget --no-cache -O /opt/software/jre-8u101-linux-x64.rpm "http://builds.rebasoft.net/builder/jre/jre-8u101-linux-x64.rpm"
@@ -187,7 +177,7 @@ ldconfig
 # Final Configurations
 chmod 744 -R /opt/Rebasoft/MACAuditor/resources/webapps/* /opt/Rebasoft/ApplicationAuditor/scimitarResources/webapps/*
 chmod 755 /opt/Rebasoft/MACAuditor/resources/wmi/wmic_32 /opt/Rebasoft/MACAuditor/resources/unix/makeDiagnostics.sh /opt/Rebasoft/ApplicationAuditor/scimitarResources/unix/makeDiagnostics.sh
-/etc/init.d/postfix stop
+systemctl stop postfix.service
 /etc/init.d/appauditord stop
 /etc/init.d/macauditord stop
 su postgres < /opt/software/provisionDB.txt
@@ -201,3 +191,4 @@ echo "#port=5672" >> rsmb.properties
 echo "#username=test" >> rsmb.properties
 echo "#password=test" >> rsmb.properties
 exit 0
+

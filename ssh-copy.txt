@@ -16,3 +16,5 @@ ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.32
 ssh-copy-id 172.16.100.32
 ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.33
 ssh-copy-id 172.16.100.33
+ssh-keygen -f "/root/.ssh/known_hosts" -R 172.16.100.34
+ssh-copy-id 172.16.100.34
