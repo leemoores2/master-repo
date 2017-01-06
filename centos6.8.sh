@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # Centos 6.8 Minimal Install
+
 # Disable SELINUX
 if grep -q SELINUX=enforcing /etc/selinux/config; then
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g; s/SELINUX=permissive/SELINUX=disabled/g' /etc/selinux/config
 shutdown -r now
 exit 0
 else
-echo "no need to restart for selinux"
+    echo "no need to restart for selinux"
 fi
 
 # Rebasoft User
@@ -151,8 +152,7 @@ echo $acname > /opt/Rebasoft/MACAuditor/installed.txt
 cp -n /opt/Rebasoft/MACAuditor/resources/unix/start.template /opt/Rebasoft/MACAuditor/resources/start
 cp -n /opt/Rebasoft/MACAuditor/resources/unix/macauditord /etc/init.d/macauditord
 chmod 755 /opt/Rebasoft/MACAuditor/resources/start /etc/init.d/macauditord
-/sbin/chkconfig --add macauditord
-/sbin/chkconfig --level 345 macauditord on
+/sbin/chkconfig --add macauditord&& /sbin/chkconfig --level 345 macauditord on
 /etc/init.d/macauditord restart
 sleep 2
 
@@ -162,8 +162,7 @@ echo $aaname > /opt/Rebasoft/ApplicationAuditor/installed.txt
 cp -n /opt/Rebasoft/ApplicationAuditor/scimitarResources/unix/start.template /opt/Rebasoft/ApplicationAuditor/scimitarResources/start
 cp -n /opt/Rebasoft/ApplicationAuditor/scimitarResources/unix/appauditord /etc/init.d/appauditord
 chmod 755 /opt/Rebasoft/ApplicationAuditor/scimitarResources/start /etc/init.d/appauditord
-/sbin/chkconfig --add appauditord
-/sbin/chkconfig --level 345 appauditord on
+/sbin/chkconfig --add appauditord&& /sbin/chkconfig --level 345 appauditord on
 /etc/init.d/appauditord restart
 sleep 2
 
@@ -187,9 +186,7 @@ ldconfig
 # Final Configurations
 chmod 744 -R /opt/Rebasoft/MACAuditor/resources/webapps/* /opt/Rebasoft/ApplicationAuditor/scimitarResources/webapps/*
 chmod 755 /opt/Rebasoft/MACAuditor/resources/wmi/wmic_32 /opt/Rebasoft/MACAuditor/resources/unix/makeDiagnostics.sh /opt/Rebasoft/ApplicationAuditor/scimitarResources/unix/makeDiagnostics.sh
-/etc/init.d/postfix stop
-/etc/init.d/appauditord stop
-/etc/init.d/macauditord stop
+/etc/init.d/postfix stop&& /etc/init.d/appauditord stop&& /etc/init.d/macauditord stop
 su postgres < /opt/software/provisionDB.txt
 
 # Rabbit MQ

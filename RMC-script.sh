@@ -7,7 +7,7 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 shutdown -r now
 exit 0
 else
-echo "no need to restart for selinux"
+    echo "no need to restart for selinux"
 fi
 
 # Rebasoft User
@@ -31,7 +31,7 @@ mkdir -p /opt/scripts /opt/software /opt/software/samplicator
 # Monitoring Scripts
 wget --no-cache -O /opt/scripts/disk_mon.sh "http://builds.rebasoft.net/builder/disk_mon.sh"
 wget --no-cache -O /opt/scripts/postgres_mon.sh "http://builds.rebasoft.net/builder/postgres_mon.sh"
-chmod -R 755 disk_mon.sh postgres_mon.sh
+chmod -R 755 /opt/scripts
 (crontab -u root -l; echo "0 */1 * * * /opt/scripts/disk_mon.sh" ) | crontab -u root -
 (crontab -u root -l; echo "*/5 * * * * /opt/scripts/postgres_mon.sh" ) | crontab -u root -
 wget --no-cache -O /opt/scripts/rmctouse.txt "http://builds.rebasoft.net/builder/rmctouse.txt"
@@ -117,8 +117,8 @@ wget --no-cache -O /var/lib/pgsql/data/pg_hba.conf "http://builds.rebasoft.net/b
 wget --no-cache -O /var/lib/pgsql/data/postgresql.conf "http://builds.rebasoft.net/builder/postgresqlAppliance.conf"
 chkconfig --level 345 postgresql on
 /etc/init.d/postgresql restart
-wget --no-cache -O /opt/software/RMCDB.txt "http://builds.rebasoft.net/builder/RMCDB.txt"
-su postgres < /opt/software/RMCDB.txt
+wget --no-cache -O /opt/software/createRMCDB.txt "http://builds.rebasoft.net/builder/createRMCDB.txt"
+su postgres < /opt/software/createRMCDB.txt
 
 # NTP
 chkconfig --level 345 snmpd on
@@ -149,16 +149,13 @@ chkconfig --level 0123456 postfix off
 # Rabbit MQ
 
 ##### Adding repository entry #####
-
 wget https://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm -P /opt/software/
 rpm -Uvh /opt/software/erlang-solutions-1.0-1.noarch.rpm 
 
 ##### Installing Erlang #####
-
 yum -y install erlang
 
 ##### Install RabbitMQ server #####
-
 wget --no-cache http://www.convirture.com/repos/definitions/rhel/6.x/convirt.repo -P /etc/yum.repos.d/
 yum -y install socat
 wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.5/rabbitmq-server-3.6.5-1.noarch.rpm -P /opt/software/
@@ -187,9 +184,9 @@ echo "[{rabbit, [{loopback_users, []}]}]." >> /etc/rabbitmq/rabbitmq.config
 rabbitmq-plugins enable rabbitmq_management   
 
 ##### Add RabbitMQ user #####
-rabbitmqctl add_user lee lee
-rabbitmqctl set_user_tags lee administrator
-rabbitmqctl set_permissions -p / lee ".*" ".*" ".*"
+rabbitmqctl add_user rebasoft R3b4s0ft
+rabbitmqctl set_user_tags rebasoft administrator
+rabbitmqctl set_permissions -p / rebasoft ".*" ".*" ".*"
 
 ##### Restart Server
 /etc/init.d/rabbitmq-server restart

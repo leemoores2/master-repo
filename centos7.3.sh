@@ -3,14 +3,12 @@
 # Centos 7.3 Minimal Install
 
 # Disable SELINUX
-#if grep -q SELINUX=enforcing /etc/selinux/config; then
 if grep -q SELINUX=enforcing /etc/sysconfig/selinux; then
-#sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g; s/SELINUX=permissive/SELINUX=disabled/g' /etc/sysconfig/selinux
 shutdown -r now
 exit 0
 else
-echo "no need to restart for selinux"
+    echo "no need to restart for selinux"
 fi
 
 # Rebasoft User
@@ -123,12 +121,7 @@ wget --no-cache -O /opt/software/createACDB.txt "http://builds.rebasoft.net/buil
 su postgres < /opt/software/createAADB.txt
 su postgres < /opt/software/createACDB.txt
 
-# NTP
-systemctl start snmpd.service
-yum -y install ntp ntpdate
-systemctl stop ntpd.service
-ntpdate pool.ntp.org
-systemctl start ntpd.service
+# NTP - Already configured using chronyd service
 
 # Java Runtime Environment 1.8
 wget --no-cache -O /opt/software/jre-8u101-linux-x64.rpm "http://builds.rebasoft.net/builder/jre/jre-8u101-linux-x64.rpm"
