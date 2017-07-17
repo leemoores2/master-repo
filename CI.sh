@@ -8,7 +8,7 @@ build_no=$5 # example: 43
 prod=$6
 
 if [[ $prod == "CORE" ]]; then
-wget http://172.16.100.16:8085/browse/SAB-AC$10$4$-$5/artifact/shared/tar.gz/rebasoft-auditor-core-$2$3$4-BUILD$5.tar.gz  -P /opt/software/
+wget http://172.16.100.16:8085/browse/SAB-AC$1$4$-$5/artifact/shared/tar.gz/rebasoft-auditor-core-$2$3$4-BUILD$5.tar.gz  -P /opt/software/
 pid=`cat /opt/Rebasoft/MACAuditor/saber.pid`
 kill -9 ${pid}
 rm -rf /opt/Rebasoft/MACAuditor
